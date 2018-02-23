@@ -27,7 +27,7 @@ namespace SpecFlowDemo.Steps
             //ScenarioContext.Current.Pending();
         }
 
-        [When(@"User enter '(.*)' and '(.*)'")]
+        [When(@"User enter (.*) and (.*)")]
         public void WhenUserEnterAnd(string username, string password)
         {
             driver.FindElement(By.Id("txtUsername")).Clear();
