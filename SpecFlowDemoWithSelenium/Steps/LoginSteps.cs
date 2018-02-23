@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
+using System.Collections.Generic;
 using System.Threading;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -31,14 +32,11 @@ namespace SpecFlowDemo.Steps
         [When(@"User enter Credentials")]
         public void WhenUserEnterCredentials(Table table)
         {
-            var credentials = table.CreateSet<Credentials>();
-            foreach (var userData in credentials)
-            {
-                driver.FindElement(By.Id("txtUsername")).Clear();
-                driver.FindElement(By.Id("txtUsername")).SendKeys(userData.Username);
-                driver.FindElement(By.Id("txtPassword")).Clear();
-                driver.FindElement(By.Id("txtPassword")).SendKeys(userData.Password);
-            }
+            dynamic credentials = table.CreateDynamicInstance();
+            driver.FindElement(By.Id("txtUsername")).Clear();
+            driver.FindElement(By.Id("txtUsername")).SendKeys(credentials.Username);
+            driver.FindElement(By.Id("txtPassword")).Clear();
+            driver.FindElement(By.Id("txtPassword")).SendKeys(credentials.Password);
         }
 
         [When(@"Click on the LogIn button")]
