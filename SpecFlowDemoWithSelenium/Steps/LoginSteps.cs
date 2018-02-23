@@ -3,6 +3,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using System.Threading;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace SpecFlowDemo.Steps
 {
@@ -27,13 +28,17 @@ namespace SpecFlowDemo.Steps
             //ScenarioContext.Current.Pending();
         }
 
-        [When(@"User enter (.*) and (.*)")]
-        public void WhenUserEnterAnd(string username, string password)
+        [When(@"User enter Credentials")]
+        public void WhenUserEnterCredentials(Table table)
         {
-            driver.FindElement(By.Id("txtUsername")).Clear();
-            driver.FindElement(By.Id("txtUsername")).SendKeys(username);
-            driver.FindElement(By.Id("txtPassword")).Clear();
-            driver.FindElement(By.Id("txtPassword")).SendKeys(password);
+            var credentials = table.CreateSet<Credentials>();
+            foreach (var userData in credentials)
+            {
+                driver.FindElement(By.Id("txtUsername")).Clear();
+                driver.FindElement(By.Id("txtUsername")).SendKeys(userData.Username);
+                driver.FindElement(By.Id("txtPassword")).Clear();
+                driver.FindElement(By.Id("txtPassword")).SendKeys(userData.Password);
+            }
         }
 
         [When(@"Click on the LogIn button")]

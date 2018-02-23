@@ -63,60 +63,46 @@ namespace SpecFlowDemoWithSelenium.Features
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void SuccessfulLoginWithValidCredentials(string username, string password, string[] exampleTags)
+        [TechTalk.SpecRun.ScenarioAttribute("Successful Login with Valid Credentials", new string[] {
+                "mytag"}, SourceLine=6)]
+        public virtual void SuccessfulLoginWithValidCredentials()
         {
-            string[] @__tags = new string[] {
-                    "mytag"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Successful Login with Valid Credentials", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Successful Login with Valid Credentials", new string[] {
+                        "mytag"});
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
  testRunner.Given("User is at the Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
  testRunner.And("Navigate to LogIn Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Username",
+                        "Password"});
+            table1.AddRow(new string[] {
+                        "Admin",
+                        "admin"});
 #line 10
- testRunner.When(string.Format("User enter {0} and {1}", username, password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 11
+ testRunner.When("User enter Credentials", ((string)(null)), table1, "When ");
+#line 13
  testRunner.And("Click on the LogIn button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 12
+#line 14
  testRunner.Then("Successful LogIN message should display", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Successful Login with Valid Credentials, Admin", new string[] {
-                "mytag"}, SourceLine=15)]
-        public virtual void SuccessfulLoginWithValidCredentials_Admin()
-        {
-#line 7
-this.SuccessfulLoginWithValidCredentials("Admin", "admin", ((string[])(null)));
-#line hidden
-        }
-        
-        [TechTalk.SpecRun.ScenarioAttribute("Successful Login with Valid Credentials, Leiz", new string[] {
-                "mytag"}, SourceLine=15)]
-        public virtual void SuccessfulLoginWithValidCredentials_Leiz()
-        {
-#line 7
-this.SuccessfulLoginWithValidCredentials("Leiz", "leiz", ((string[])(null)));
-#line hidden
-        }
-        
-        [TechTalk.SpecRun.ScenarioAttribute("Successful LogOut", SourceLine=18)]
+        [TechTalk.SpecRun.ScenarioAttribute("Successful LogOut", SourceLine=15)]
         public virtual void SuccessfulLogOut()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Successful LogOut", ((string[])(null)));
-#line 19
+#line 16
 this.ScenarioSetup(scenarioInfo);
-#line 20
+#line 17
     testRunner.Given("User is logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 21
+#line 18
  testRunner.When("User LogOut from the Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 22
+#line 19
  testRunner.Then("Successful LogOut message should display", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
